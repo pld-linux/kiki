@@ -20,11 +20,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 kiki the nano bot is a 3-D puzzle game, basically a mixture of the
-games Sokoban and Kula-World. 
-     
+games Sokoban and Kula-World.
+
 %description -l pl
 kiki the nano bot jest trójwymiarow± gr±, opart± na mieszance gier
-Sokoban oraz Kula-World. 
+Sokoban oraz Kula-World.
 
 %prep
 %setup -q -n %{name}_src
