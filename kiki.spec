@@ -1,34 +1,34 @@
 Summary:	kiki the nano bot is a 3-D puzzle game
-Summary(pl):	kiki the nano bot jest trójwymiarow± gr± logiczn±
+Summary(pl):	kiki the nano bot - trójwymiarowa gra logiczna
 Name:		kiki
 Version:	0.9.0
 Release:	2
 License:	GPL
 Group:		X11/Aplications
-Source0:	http://cesnet.dl.sourceforge.net/sourceforge/kiki/%{name}-src-%{version}.tgz
+Source0:	http://dl.sourceforge.net/kiki/%{name}-src-%{version}.tgz
 # Source0-md5:	60ec6bdf0196c9c934f683d3bf7a12ea
 URL:		http://kiki.sourceforge.net/
-Patch0:		kiki-sysconfdir.patch
-Requires:	python
-Requires:	SDL_mixer
-Requires:	SDL_image
-Requires:	SDL
+Patch0:		%{name}-sysconfdir.patch
+BuildRequires:	SDL_mixer-devel
+BuildRequires:	SDL_image-devel
+BuildRequires:	SDL-devel
 BuildRequires:	python-devel
 BuildRequires:	python-modules
 BuildRequires:	swig
 BuildRequires:	glut-devel
-BuildRequires:	SDL_mixer-devel
-BuildRequires:	SDL_image-devel
-BuildRequires:	SDL-devel
+Requires:	SDL_mixer
+Requires:	SDL_image
+Requires:	SDL
+Requires:	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-kiki the nano bot is a 3-D puzzle game, basically a mixture of the games
-Sokoban and Kula-World. 
+kiki the nano bot is a 3-D puzzle game, basically a mixture of the
+games Sokoban and Kula-World. 
      
 %description -l pl
-kiki the nano bot jest trójwymiarow± gr±, opart± na mieszance gier Sokoban oraz
-Kula-World. 
+kiki the nano bot jest trójwymiarow± gr±, opart± na mieszance gier
+Sokoban oraz Kula-World. 
 
 %prep
 %setup -q -n %{name}_src
@@ -54,8 +54,7 @@ PYTHON_VER=""
 
 %{__make} \
 	CXX="%{__cxx}" \
-	SDL_CFLAGS="%{rpmcflags} -D_REENTRANT" \
-	X11_INCLUDES="-I/usr/X11R6/include" \
+	X11_INCLUDES="%{rpmcflags} -I/usr/X11R6/include" \
 	GLLIBS="-L/usr/X11R6/lib -lglut -lGLU -lGL" \
 	PYTHON_VERSION=$PYTHON_VER \
 	PYTHONLIBS="\
@@ -65,8 +64,6 @@ PYTHON_VER=""
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_bindir}
 install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/{py,sounds}
 
