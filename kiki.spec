@@ -44,7 +44,8 @@ cd kiki/linux
 
 cat Makefile |sed -e s,PYTHON_VERSION=2.2,PYTHON_VERSION=2.3,g > Makefile.pld
 cat Makefile.pld |sed -e s,$\(PYTHONHOME\)/config/libpython$\(PYTHON_VERSION\).a,/usr/lib/libpython$\(PYTHON_VERSION\).a,g > Makefile
-#mv Makefile.pld Makefile
+cat Makefile | sed -e s,/X11/,/X11R6/,g > Makefile.pld
+mv Makefile.pld Makefile
 make
 cd ../..
 
