@@ -1,0 +1,11 @@
+--- kiki_src/kiki/src/main/KikiController.cpp	2003-04-02 10:43:31.000000000 +0200
++++ kiki_patch/kiki/src/main/KikiController.cpp	2003-07-22 15:40:00.705696856 +0200
+@@ -53,7 +53,7 @@
+     quit_key = "META_q";
+     gamma = 1;
+ #else
+-    char * kiki_home_env = getenv("KIKI_HOME");
++    char * kiki_home_env = "/usr/share/kiki";
+     if (kiki_home_env)
+     {
+        kiki_home = kiki_home_env;
