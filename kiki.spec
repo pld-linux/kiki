@@ -2,7 +2,7 @@ Summary:	kiki the nano bot is a 3-D puzzle game
 Summary(pl):	kiki the nano bot - trójwymiarowa gra logiczna
 Name:		kiki
 Version:	0.9.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Aplications
 Source0:	http://dl.sourceforge.net/kiki/%{name}-src-%{version}.tgz
@@ -36,27 +36,21 @@ cd kodilib/linux
 %{__make} \
 	CXX="%{__cxx}" \
 	SDL_CFLAGS="%{rpmcflags} -D_REENTRANT" \
-	X11INCLUDES="-I/usr/X11R6/include"
+	X11INCLUDES="-I/usr/X11R6/include" \
+	PYTHONHOME=%{py_libdir}
 
 cd ../../kiki/linux
-
-# try to detect python version
-PYTHON_VER=""
-[ -d "/usr/include/python2.2" ] && PYTHON_VER="2.2"
-[ -d "/usr/include/python2.3" ] && PYTHON_VER="2.3"
-[ "$PYTHON_VER" == "" ] && \
-    echo "Unknown python version or python-devel not found!" \
-    exit 1
 
 %{__make} \
 	CXX="%{__cxx}" \
 	X11_INCLUDES="%{rpmcflags} -I/usr/X11R6/include" \
-	GLLIBS="-L/usr/X11R6/lib -lglut -lGLU -lGL" \
-	PYTHON_VERSION=$PYTHON_VER \
+	GLLIBS="-L/usr/X11R6/%{_lib} -lglut -lGLU -lGL" \
+	PYTHONHOME=%{py_libdir} \
+	PYTHON_VERSION=%{py_ver} \
 	PYTHONLIBS="\
-	    /usr/lib/libpython$PYTHON_VER.so* -lutil \
-            /usr/lib/python$PYTHON_VER/lib-dynload/math.so \
-	    /usr/lib/python$PYTHON_VER/lib-dynload/time.so"
+	    /usr/%{_lib}/libpython$PYTHON_VER.so* -lutil \
+            %{py_dyndir}/math.so \
+	    %{py_dyndir}/time.so"
 
 %install
 rm -rf $RPM_BUILD_ROOT
