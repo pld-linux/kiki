@@ -14,6 +14,8 @@ Requires:	SDL_mixer
 Requires:	SDL_image
 Requires:	SDL
 BuildRequires:	python
+BuildRequires:	swig
+#BuildRequires:	swig-python
 BuildRequires:	glut-devel
 BuildRequires:	SDL_mixer-devel
 BuildRequires:	SDL_image-devel
@@ -37,6 +39,12 @@ cd kodilib/linux
 make
 cd ../..
 cd kiki/linux
+
+# Yep... thats nasty...
+
+cat Makefile |sed -e s,PYTHON_VERSION=2.2,PYTHON_VERSION=2.3,g > Makefile.pld
+cat Makefile.pld |sed -e s,$\(PYTHONHOME\)/config/libpython$\(PYTHON_VERSION\).a,/usr/lib/libpython$\(PYTHON_VERSION\).a,g > Makefile
+#mv Makefile.pld Makefile
 make
 cd ../..
 
