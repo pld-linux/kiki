@@ -6,7 +6,9 @@ Release:	1
 License:	GPL
 Group:		X11/Aplications
 Source0:	http://cesnet.dl.sourceforge.net/sourceforge/kiki/%{name}-src-%{version}.tgz
+# Source0-md5:	60ec6bdf0196c9c934f683d3bf7a12ea
 URL:		http://kiki.sourceforge.net/
+Patch0:		kiki-sysconfdir.patch
 Requires:	python
 Requires:	SDL_mixer
 Requires:	SDL_image
@@ -28,6 +30,7 @@ Kula-World.
 
 %prep
 %setup -q -n %{name}_src
+%patch0 -p1
 
 %build
 cd kodilib/linux
@@ -39,14 +42,26 @@ cd ../..
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT%{_bindir}
+install -d $RPM_BUILD_ROOT%{_sysconfdir}
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/py
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sounds
+
+install kiki/py/*.py $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/py
+install kiki/sounds/*.wav $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sounds
+install kiki/sounds/*.mp3 $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sounds
+install kiki/sounds/*.aiff $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sounds
+install kiki/sounds/*.aif $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sounds
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc  
-%{_sysconfdir}/luci/system/users/*
-%{_libdir}/%{name}/*
-%defattr(755,root,root)
+%doc kiki/linux/Readme.txt 
 %attr(755,root,root) %{_bindir}/*
+%{_sysconfdir}/%{name}/py/*
+%{_sysconfdir}/%{name}/sounds/*
