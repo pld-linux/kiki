@@ -11,14 +11,10 @@ URL:		http://kiki.sourceforge.net/
 Patch0:		%{name}-sysconfdir.patch
 BuildRequires:	SDL_mixer-devel
 BuildRequires:	SDL_image-devel
-BuildRequires:	SDL-devel
 BuildRequires:	python-devel
 BuildRequires:	python-modules
 BuildRequires:	swig
 BuildRequires:	glut-devel
-Requires:	SDL_mixer
-Requires:	SDL_image
-Requires:	SDL
 Requires:	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
