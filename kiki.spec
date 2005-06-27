@@ -13,7 +13,7 @@ BuildRequires:	SDL_mixer-devel
 BuildRequires:	SDL_image-devel
 BuildRequires:	python-devel
 BuildRequires:	python-modules
-BuildRequires:	swig
+BuildRequires:	swig-python >= 1.3.25
 BuildRequires:	glut-devel
 Requires:	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
