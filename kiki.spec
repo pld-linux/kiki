@@ -9,12 +9,12 @@ Source0:	http://dl.sourceforge.net/kiki/%{name}-src-%{version}.tgz
 # Source0-md5:	60ec6bdf0196c9c934f683d3bf7a12ea
 URL:		http://kiki.sourceforge.net/
 Patch0:		%{name}-sysconfdir.patch
-BuildRequires:	SDL_mixer-devel
 BuildRequires:	SDL_image-devel
+BuildRequires:	SDL_mixer-devel
+BuildRequires:	glut-devel
 BuildRequires:	python-devel
 BuildRequires:	python-modules
 BuildRequires:	swig-python >= 1.3.25
-BuildRequires:	glut-devel
 Requires:	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -31,17 +31,13 @@ Sokoban oraz Kula-World.
 %patch0 -p1
 
 %build
-cd kodilib/linux
-
-%{__make} \
+%{__make} -C kodilib/linux \
 	CXX="%{__cxx}" \
 	SDL_CFLAGS="%{rpmcflags} -D_REENTRANT" \
 	X11INCLUDES="-I/usr/X11R6/include" \
 	PYTHONHOME=%{py_libdir}
 
-cd ../../kiki/linux
-
-%{__make} \
+%{__make} -C kiki/linux \
 	CXX="%{__cxx}" \
 	X11_INCLUDES="%{rpmcflags} -I/usr/X11R6/include" \
 	GLLIBS="-L/usr/X11R6/%{_lib} -lglut -lGLU -lGL" \
@@ -49,7 +45,7 @@ cd ../../kiki/linux
 	PYTHON_VERSION=%{py_ver} \
 	PYTHONLIBS="\
 	    /usr/%{_lib}/libpython$PYTHON_VER.so* -lutil \
-            %{py_dyndir}/math.so \
+	    %{py_dyndir}/math.so \
 	    %{py_dyndir}/time.so"
 
 %install
