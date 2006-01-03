@@ -2,7 +2,7 @@ Summary:	kiki the nano bot is a 3-D puzzle game
 Summary(pl):	kiki the nano bot - trójwymiarowa gra logiczna
 Name:		kiki
 Version:	0.9.0
-Release:	6
+Release:	7
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/kiki/%{name}-src-%{version}.tgz
@@ -16,7 +16,10 @@ BuildRequires:	python-devel
 BuildRequires:	python-modules
 BuildRequires:	swig-python >= 1.3.25
 Requires:	python
+Requires:	python-modules
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_noautoreq	%{py_dyndir}/.*\.so
 
 %description
 kiki the nano bot is a 3-D puzzle game, basically a mixture of the
