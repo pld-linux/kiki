@@ -1,5 +1,5 @@
 Summary:	kiki the nano bot is a 3-D puzzle game
-Summary(pl):	kiki the nano bot - trójwymiarowa gra logiczna
+Summary(pl.UTF-8):   kiki the nano bot - trÃ³jwymiarowa gra logiczna
 Name:		kiki
 Version:	0.9.0
 Release:	7
@@ -25,8 +25,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 kiki the nano bot is a 3-D puzzle game, basically a mixture of the
 games Sokoban and Kula-World.
 
-%description -l pl
-kiki the nano bot jest trójwymiarow± gr±, opart± na mieszance gier
+%description -l pl.UTF-8
+kiki the nano bot jest trÃ³jwymiarowÄ… grÄ…, opartÄ… na mieszance gier
 Sokoban oraz Kula-World.
 
 %prep
