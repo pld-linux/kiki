@@ -31,7 +31,7 @@ Sokoban oraz Kula-World.
 
 %prep
 %setup -q -n %{name}_src
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__make} -C kodilib/linux \
